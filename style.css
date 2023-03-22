@@ -1,0 +1,42 @@
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+#chatbox {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    height: 500px;
+    overflow: auto;
+}
+
+#chatlog {
+    margin-bottom: 10px;
+}
+
+#inputbox {
+    margin-top: 10px;
+}
+
+input[type=text] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    width: 80%;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    width: 20%;
+    cursor: pointer;
+}
