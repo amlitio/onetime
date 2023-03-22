@@ -1,19 +1,31 @@
-from flask import Flask, request, jsonify, render_template
-from transformers import pipeline, set_seed
+from flask import Flask, render_template, request, jsonify
+import openai
+import os
 
 app = Flask(__name__)
-chatbot = pipeline('text2text-generation', model='EleutherAI/gpt-neo-2.7B')
+
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
+model_engine = "text-davinci-002"
+
+def ask_gpt(prompt):
+    response = openai.Completion.create(
+        engine=model_engine,
+        prompt=prompt,
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    message = response.choices[0].text.strip()
+    return message
 
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
-@app.route('/chatbot', methods=['POST'])
-def chatbot_response():
+@app.route('/get_response', methods=['POST'])
+def get_bot_response():
     user_input = request.form['user-input']
-    set_seed(42)
-    chatbot_output = chatbot(user_input, max_length=1000, do_sample=True, temperature=0.7)[0]['generated_text']
-    return jsonify({'response': chatbot_output})
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    bot_response = ask_gpt(user_input)
+    return jsonify({'response': bot_response})
