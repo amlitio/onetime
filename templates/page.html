@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat with ChatGPT AI</title>
+	<style>
+		body {
+			background-color: #000;
+			color: #fff;
+			font-family: sans-serif;
+		}
+
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.form-group input[type="text"] {
+			padding: 10px;
+			width: 100%;
+			font-size: 16px;
+			border: none;
+			border-radius: 5px;
+			outline: none;
+		}
+
+		.form-group input[type="submit"] {
+			padding: 10px 20px;
+			background-color: #fff;
+			color: #000;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+		.chat-box {
+			margin-top: 20px;
+			padding: 10px;
+			border: 1px solid #fff;
+			border-radius: 5px;
+			height: 200px;
+			overflow: auto;
+		}
+
+		.dark-mode-toggle {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
+
+		.dark-mode-toggle label {
+			color: #fff;
+			font-size: 16px;
+			font-weight: bold;
+			margin-right: 10px;
+		}
+
+		.dark-mode-toggle input[type="checkbox"] {
+			transform: scale(1.5);
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Chat with ChatGPT AI</h1>
+		<form id="chat-form">
+			<div class="form-group">
+				<label for="user-input">Ask me anything:</label>
+				<input type="text" id="user-input" name="user-input" placeholder="Type your question here...">
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Send">
+			</div>
+		</form>
+		<div class="chat-box" id="chat-box"></div>
+	</div>
+
+	<div class="dark-mode-toggle">
+		<label for="dark-mode">Dark mode:</label>
+		<input type="checkbox" id="dark-mode">
+	</div>
+
+	<script>
+		const chatForm = document.querySelector('#chat-form');
+		const chatBox = document.querySelector('#chat-box');
+		const darkModeToggle = document.querySelector('#dark-mode');
+
+		chatForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			const userInput = document.querySelector('#user-input').value.trim();
+			if (userInput === '') {
+				return;
+			}
+			const data = {
+				input: userInput
+			};
+		
